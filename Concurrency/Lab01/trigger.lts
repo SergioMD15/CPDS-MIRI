@@ -1,0 +1,3 @@
+BISTABLE = ONE,
+ZERO = (trigger -> [0] -> ONE),
+ONE = (trigger -> [1] -> ZERO).

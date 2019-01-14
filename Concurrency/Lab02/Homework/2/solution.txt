@@ -1,0 +1,35 @@
+
+## Luca Barone
+## Sergio Mosquera Dopico
+
+2. (M&K 5.6) The Saving Account Problem: A saving account is shared by Alice
+and Bob.  Each one may deposit or withdraw funds from the account subject to the
+constraint that the balance of the account must never become negative. Develop a
+model for the problem and from the model derive a Java implementation for the
+saving account system.  First, fill in the snipped code to obtain the FSP model
+
+
+	```
+	Const N = 10 //actually, it has to be a big number...
+
+	PERSON = (deposit[0..N] -> PERSON
+		|withdraw[0..N] -> ...
+
+	).
+
+	ACCOUNT[balance: 0..N] = (deposit[amount:0..N] -> ...
+		|when(balance > 0) ..
+	).
+	
+	||SAVING_ACCOUNT = (a:PERSON || ... || {.. , ...}::ACCOUNT).
+	```
+
+Now develop the Java program for the Saving Account problem. In order to avoid
+the execution get stuck when the balance is not enough to satisfy withdraw
+orders of Alice and Bob you can assume that a third participant (perhaps a
+company) shares the account and only engages in the deposit action.  Java codes
+that stick to recommendations on Magge and Kramer book in Chapter 5 will get a
+higher score.
+
+The solutions for the first and the second part are respectively inside
+"balance.lts" file and inside the "java/" folder.

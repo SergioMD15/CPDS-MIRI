@@ -1,0 +1,24 @@
+
+## Luca Barone
+## Sergio Mosquera Dopico
+
+1. BanketNoWait. It is possible to “repair” easily the BadPotTwo keeping the same approach.
+That is “just try but not wait”, later you will try again. We call such a program
+BanketNoWait. Compare the approaches between Banket and BanketNoWait, which one
+is better (if any)?
+
+The solution would be including the keyword "synchronized" to the methods "getservings"
+and "fillpot". The solution is in the Java file inside this folder.
+
+We can state that "Banket" is better, because once a process executes "getservings"
+whenever no servings are available, it is set to the "waiting" state so the CPU is
+able to respond the requests from other processes.
+Once the pot is full again, this awaiting process is notified so it "wakes up" and
+restarts its execution.
+There is also the point that no other process can execute the method "getservings"
+while another one is waiting.
+
+On the other hand, we find that the "BanketNoWait" solution does not change the
+state for the processes to "waiting", instead of this, it asks the process to
+check again after some time. It is not efficient for the CPU to attend the same
+requests again and again if the response will be the same.

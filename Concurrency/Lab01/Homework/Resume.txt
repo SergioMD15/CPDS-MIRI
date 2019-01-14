@@ -1,0 +1,43 @@
+/* Homework: LTS & FSP
+*
+*
+*
+* Name: Luca
+* Surname: Barone
+*
+* Name: Sergio
+* Surname: Mosquera Dopico
+*
+*/
+/* museum */
+const N = 5
+EAST = (arrive -> EAST).
+WEST = (leave -> WEST).
+DIRECTOR = (open -> close -> DIRECTOR).
+
+CONTROL = CLOSED[0],
+CLOSED[i:0..N] = (when (i==0) open -> OPENED[i]
+			|when (i>0) leave -> CLOSED[i-1]
+),
+OPENED[i:0..N] = (close -> CLOSED[i]
+			|when(i<N) arrive -> OPENED[i+1]
+			|when(i>0) leave -> OPENED[i-1]
+).
+||MUSEUM = (EAST || WEST || DIRECTOR || CONTROL).
+
+
+/* Time-Out Client server */
+
+At state 3 there is a potential deadlock because we can only enter in the state but never exit it.
+We have to rewrite SERVER to avoid this potential error.
+
+/* write your solution */
+
+CLIENT = (call -> WAIT),
+WAIT = (answer -> continue -> CLIENT | timeout -> CLIENT).
+
+SERVER = (request -> service -> reply -> SERVER | request -> timeout -> SERVER).
+
+||CLIENT_SERVER = (CLIENT || SERVER) /{call/request, answer/reply}.
+
+/* end homework */

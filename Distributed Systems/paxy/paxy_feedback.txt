@@ -1,0 +1,13 @@
+* Acceptor: 'Proposer ! {sorry, {accept, Voted}}' must be 'Proposer ! {sorry, {accept, Round}}'
+* Distributed execution could be accomplished without modifying the send function in proposer's code
+* You should analyze the impact of various message dropping percentages. Furthermore, your explanation is misleading, as for instance the next sentence 'By increasing the number of drop the algorithm reach to consensus immediately'.
+* Fault tolerance
+  - This is built on a version of Paxy from previous semesters
+  - When receiving a prepare and Round > Promised, 'pers:store(Name, Promised, Voted, Value, PanelId)' must be 'pers:store(Name, Round, Voted, Value, PanelId)'
+  - When receiving an accept and Round > Voted, 'pers:store(Name, Promised, Voted, Value, PanelId)' must be 'pers:store(Name, Promised, Round, Proposal, PanelId)'
+  - You should update the GUI panel of the acceptor when recovering its state from the disk
+  - pers:store in the init function will be only executed when the acceptor stops as it is called after acceptor function
+  - You'd better save the acceptor state before sending 'promise' and 'vote' messages
+  - The acceptor's state must be only saved when it has been modified
+  - The acceptor's state must be removed from the disk when the acceptor finishes its execution successfully
+  - Your demonstration should show that the acceptor recovers from a crash with the right state

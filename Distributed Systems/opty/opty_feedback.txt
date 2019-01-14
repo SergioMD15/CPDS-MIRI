@@ -1,0 +1,8 @@
+* The impact of each parameter can be better appreciated if represented graphically (as you did or experiment 3.iv)
+* Experiment 3.v about evaluating the impact of different read/write ratios requires the total number of operations per transaction to be fixed. For instance, for a total number of operations of 5, the ratios to test would be 0:5, 1:4, 2:3, 3:2, 4:1, and 5:0. You should realize that, for a fixed amount of operations, the % of successful transactions regarding the read/write ratio has a "U" form.
+* Mention in the various experiments whether the success rate is the same for the different clients
+* Show some evidence of the distributed execution
+* Forward validation: 
+  - handler should ask to remove the read operations of the transaction for each entry if it is requested to abort
+  - you do not need to keep the write timestamp on each entry (only needed for backward validation)
+  - you have to ensure that the active reads are consistently checked (no active transaction can read an entry between the time its reads are checked and the time it is written)
